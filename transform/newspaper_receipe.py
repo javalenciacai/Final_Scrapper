@@ -17,7 +17,7 @@ def main(filename):
     logger.info('Starting cleaning process')
 
     df = _read_data(filename)
-    newspaper_uid = _extract_newspaper_uid(filename)
+    newspaper_uid = _extract_newspaper_uid(filename)--
     df = _add_newspaper_uid_column(df, newspaper_uid)
     df = _extract_host(df)
     df = _fill_missing_titles(df)
