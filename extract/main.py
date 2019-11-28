@@ -5,7 +5,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 import re
 
-from requests.exceptions import HTTPError
+from requests.exceptions import HTTPError, ContentDecodingError
 from urllib3.exceptions import MaxRetryError
 
 import news_page_objects as news
@@ -56,7 +56,7 @@ def _fetch_article(news_site_uid, host, link):
     article = None
     try:
         article = news.ArticlePage(news_site_uid, _build_link(host, link))
-    except (HTTPError, MaxRetryError) as e:
+    except (HTTPError, MaxRetryError, ContentDecodingError) as e:
         logger.warning('Error while fechting the article', exc_info=False)
 
 
